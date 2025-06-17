@@ -10,6 +10,7 @@ import ResetPass from './modules/Authentication/components/Resent-pass/ResetPass
 import Login from './modules/Authentication/components/Login/Login';
 import ForgetPass from './modules/Authentication/components/Forget-pass/ForgetPass';
 import MasterLayout from './modules/Shared/components/MasterLayout/MasterLayout';
+import Dashboard from './modules/Dashboard/components/Dashboard/Dashboard';
 
 function App() {
   

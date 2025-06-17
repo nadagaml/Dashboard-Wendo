@@ -16,4 +16,4 @@ export const USERS_URLS = {
     REGISTER_PASSENGER : `/auth/register/passenger`,
     
 
-}
+} 
