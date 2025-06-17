@@ -5,3 +5,4 @@ export default function ForgetPass() {
     <div>ForgetPass</div>
   )
 }
+ 

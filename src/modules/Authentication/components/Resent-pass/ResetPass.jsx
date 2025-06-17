@@ -5,3 +5,4 @@ export default function ResetPass() {
     <div>ResetPass</div>
   )
 }
+ 
