@@ -14,6 +14,7 @@ export const USERS_URLS = {
     LOGIN : `/auth/login`,
     REGISTER_DRIVER : `/auth/register/driver`,
     REGISTER_PASSENGER : `/auth/register/passenger`,
+    RESET_PASSWORD : `/auth/reset`
     
 
 } 
