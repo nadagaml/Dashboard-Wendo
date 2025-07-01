@@ -2,11 +2,12 @@ import React, { useContext, useState } from 'react'
 import logo from '../../../../assets/images/logo.png';
 import login_pic from '../../../../assets/images/Graphic Side.svg';
 import Google from '../../../../assets/images/Socail Links.png';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../../context/AuthContext';
 import { axiosInstance, USERS_URLS } from '../../../Services/urls';
 import { toast } from 'react-toastify';
+import { MOBILE_VALIDATION, PASSWORD_VALIDTION } from '../../../Services/Validation';
 
 export default function Login() {
 
@@ -74,7 +75,7 @@ const onSubmit = async (data)=>
             className="form-control"
             id="phone"
             placeholder="+201234567890"
-            {...register('phoneNumber' , {required:'phoneNumber is required'})}
+            {...register('phoneNumber' , MOBILE_VALIDATION)}
           />
         </div>
               {errors.phoneNumber && (
@@ -87,7 +88,7 @@ const onSubmit = async (data)=>
             className="form-control"
             id="password"
             placeholder="********"
-            {...register('password' , {required:'password is required'})}
+            {...register('password' ,PASSWORD_VALIDTION)}
           />
         </div>
         {errors.password && (
@@ -117,9 +118,9 @@ const onSubmit = async (data)=>
 
       <p className="text-center small text-muted">
         Don’t have an account?{" "}
-        <a href="#" className="text-primary text-decoration-underline">
+        <Link to="/register" className="text-primary text-decoration-underline">
           Click here to sign up.
-        </a>
+        </Link>
       </p>
     </div>
 
