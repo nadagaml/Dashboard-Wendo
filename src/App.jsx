@@ -11,6 +11,9 @@ import Login from './modules/Authentication/components/Login/Login';
 import ForgetPass from './modules/Authentication/components/Forget-pass/ForgetPass';
 import MasterLayout from './modules/Shared/components/MasterLayout/MasterLayout';
 import Dashboard from './modules/Dashboard/components/Dashboard/Dashboard';
+import Drivers from './modules/Drivers/Drivers';
+import Trips from './modules/Trips/Trips';
+import LostItems from './modules/LostItems/LostItems';
 
 function App() {
   
@@ -18,7 +21,6 @@ function App() {
 
     {path: '',
       element:<AuthLayout />,
-      errorElement: <NotFound/>,
       children : [
               {index:true, 
               element:<Login /> 
@@ -38,6 +40,7 @@ function App() {
               element:<ForgetPass/> 
               },
       ],
+       errorElement: <NotFound/>,
     },
 
 
@@ -45,8 +48,12 @@ function App() {
       element :<MasterLayout/>,
       children: [
         { index: true, element: <Dashboard /> },
-      ]
+        {path : 'drivers' , element:<Drivers/>},
+        {path : 'trips' , element:<Trips/>},
+        {path : 'lost-items' , element:<LostItems/>},
 
+      ],
+      errorElement: <NotFound />
     }
   ])
 

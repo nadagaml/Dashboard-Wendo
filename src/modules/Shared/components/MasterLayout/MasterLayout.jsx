@@ -1,6 +1,8 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../../../../context/AuthContext'
-import Sidebar from '../Sidebar/Sidebar'
+import SideBar from '../Sidebar/Sidebar'
+import { Navbar } from 'react-bootstrap'
+import { Outlet } from 'react-router-dom'
 
 export default function MasterLayout() {
 
@@ -9,21 +11,34 @@ export default function MasterLayout() {
 
   return (
     <>
-    
-    <div className='layout-container'>
-       <div className="sideBar-cont">
-          <sideBar/>
-       </div>
 
-         <div className="main-content w-100">
+    <div className='d-flex'>
+
+      <div className='position-sticky top-0 vh-100' >
+          <SideBar />
+        </div>
+        <div className="w-100 content-container ">
           <Navbar loginData={loginData} />
+       
           <Outlet />
         </div>
-
-
 
     </div>
     
     </>
   )
 }
+    
+    // <div className='layout-container'>
+    //    <div className="sideBar-cont">
+    //       <SideBar/>
+    //    </div>
+
+    //      <div className="main-content w-100">
+    //       <Navbar loginData={loginData} />
+    //       <Outlet />
+    //     </div>
+
+
+
+    // </div>
