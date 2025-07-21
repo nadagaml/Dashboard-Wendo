@@ -1,11 +1,16 @@
 import axios from "axios";
 
-const baseURL =  "http://165.232.127.150:8080/api";
+const baseURL =  "http://31.97.185.117:8080/api/";
 
 export const axiosInstance = axios.create({
-    baseURL , 
-    headers: {Authorization :localStorage.getItem('token')}
+  baseURL,
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${localStorage.getItem('token') || ''}`,
+  },
+  withCredentials: false, 
 });
+
 
 
 // ****************** USERS **********************

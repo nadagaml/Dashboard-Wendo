@@ -88,7 +88,7 @@ const onSubmit = async (data)=>
             className="form-control"
             id="password"
             placeholder="********"
-            {...register('password' ,PASSWORD_VALIDTION)}
+            {...register('password')}
           />
         </div>
         {errors.password && (
