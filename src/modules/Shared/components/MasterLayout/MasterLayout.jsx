@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../../../../context/AuthContext'
 import SideBar from '../Sidebar/Sidebar'
-import { Navbar } from 'react-bootstrap'
+
 import { Outlet } from 'react-router-dom'
+import Navbar from '../Navbar/Navbar'
 
 export default function MasterLayout() {
 
