@@ -1,19 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Dropdown } from "react-bootstrap";
 import { FaBell, FaEnvelope, FaSearch, FaUser } from "react-icons/fa";
 import { AuthContext } from "../../../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
 
-  //  let {  setToken,setLogData,LogData } = useContext(AuthContext)
-  // let navigate = useNavigate()
-  // function logOut() {
-  //   localStorage.removeItem("token")
-  //   setToken(null)
-  //   navigate("/login")
-  // }
+  let {setLoginData} = useContext(AuthContext)
+  let navigate = useNavigate()
 
-  // let userName = (LogData)
+  
+  function logOut() {
+    localStorage.removeItem("token")
+    setLoginData(null)
+    navigate("/login")
+  }
+
 
   return (
     <div className="d-flex justify-content-between align-items-center px-4 py-2 bg-white shadow-sm" style={{ height: "60px" }}>
@@ -66,7 +68,7 @@ export default function Navbar() {
             <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
             <Dropdown.Item href="#/action-2">Settings</Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item href="#/action-3">Logout</Dropdown.Item>
+            <Dropdown.Item onClick={logOut}>Logout</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>
