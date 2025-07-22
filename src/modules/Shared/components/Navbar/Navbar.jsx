@@ -3,19 +3,18 @@ import { Dropdown } from "react-bootstrap";
 import { FaBell, FaEnvelope, FaSearch, FaUser } from "react-icons/fa";
 import { AuthContext } from "../../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie'; 
 
 export default function Navbar() {
-
-  let {setLoginData} = useContext(AuthContext)
-  let navigate = useNavigate()
+  let { setLoginData } = useContext(AuthContext);
+  let navigate = useNavigate();
 
   
   function logOut() {
-    localStorage.removeItem("token")
-    setLoginData(null)
-    navigate("/login")
+    Cookies.remove("token"); 
+    setLoginData(null);
+    navigate("/login"); 
   }
-
 
   return (
     <div className="d-flex justify-content-between align-items-center px-4 py-2 bg-white shadow-sm" style={{ height: "60px" }}>
@@ -30,24 +29,18 @@ export default function Navbar() {
         />
       </div>
 
-     
       <div className="d-flex align-items-center gap-3">
-    
         <img
-          src="https://flagcdn.com/w40/sa.png" 
+          src="https://flagcdn.com/w40/sa.png"
           alt="lang"
           width="24"
           height="16"
           className="me-2"
         />
 
-        
         <FaBell className="text-muted cursor-pointer" size={18} />
-
-        
         <FaEnvelope className="text-muted cursor-pointer" size={18} />
 
-      
         <Dropdown align="end">
           <Dropdown.Toggle
             variant="light"
@@ -68,7 +61,7 @@ export default function Navbar() {
             <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
             <Dropdown.Item href="#/action-2">Settings</Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item onClick={logOut}>Logout</Dropdown.Item>
+            <Dropdown.Item onClick={logOut}>Logout</Dropdown.Item> 
           </Dropdown.Menu>
         </Dropdown>
       </div>
