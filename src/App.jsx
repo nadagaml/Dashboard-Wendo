@@ -33,22 +33,35 @@ function App() {
       ],
       errorElement: <NotFound />,
     },
-    {
-      path: '',
-      element: <ProtectedRoute />,
-      children: [
-        {
+    // {
+    //   path: '',
+    //   element: <ProtectedRoute />,
+    //   children: [
+    //     {
+    //       path: '',
+    //       element: <MasterLayout />,
+    //       children: [
+    //         { path: 'dashboard', element: <Dashboard /> },
+    //         { path: 'drivers', element: <Drivers /> },
+    //         { path: 'trips', element: <Trips /> },
+    //         { path: 'lost-items', element: <LostItems /> },
+    //       ],
+    //     },
+    //   ],
+    // },
+
+
+            {
           path: '',
           element: <MasterLayout />,
           children: [
-            { path: 'dashboard', element: <Dashboard /> },
-            { path: 'drivers', element: <Drivers /> },
-            { path: 'trips', element: <Trips /> },
-            { path: 'lost-items', element: <LostItems /> },
+            { index: true, element: <Dashboard /> }, 
+        { path: 'dashboard', element: <Dashboard /> }, 
+        { path: 'dashboard/drivers', element: <Drivers /> }, 
+        { path: 'dashboard/trips', element: <Trips /> }, 
+        { path: 'dashboard/lost-items', element: <LostItems /> },
           ],
         },
-      ],
-    },
   ]);
 
   return (

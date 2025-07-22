@@ -4,6 +4,7 @@ import SideBar from '../Sidebar/Sidebar'
 
 import { Outlet } from 'react-router-dom'
 import Navbar from '../Navbar/Navbar'
+import Header from '../Header/Header'
 
 export default function MasterLayout() {
 
@@ -20,6 +21,7 @@ export default function MasterLayout() {
         </div>
         <div className="w-100 content-container ">
           <Navbar loginData={loginData} />
+        
        
           <Outlet />
         </div>
