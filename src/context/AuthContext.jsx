@@ -14,7 +14,7 @@ export default function AuthContextProvider(props) {
     }
   };
 
-  useEffect(() => {
+  useEffect(() => { 
     if (localStorage.getItem('token')) {
       saveLoginData();
     }
