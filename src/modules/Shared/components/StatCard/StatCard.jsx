@@ -1,7 +1,8 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import { LineChart, Line, ResponsiveContainer } from "recharts";
 
-export default function StatCard({ title, value, icon, color }) {
+export default function StatCard({ title, value, color, chartData }) {
   return (
     <Box
       sx={{
@@ -10,54 +11,38 @@ export default function StatCard({ title, value, icon, color }) {
         alignItems: "center",
         p: 2.5,
         borderRadius: 2,
-        boxShadow: 3,
+        boxShadow: 2,
         backgroundColor: "#fff",
         minHeight: 110,
+        transition: "0.3s",
+        ":hover": { transform: "translateY(-3px)" },
         position: "relative",
         zIndex: 10,
-        mt: -4, // ده اللي بيخلي الكارت يطلع شوية فوق
-        transition: "0.3s",
-        ":hover": {
-          transform: "translateY(-3px)",
-        },
+        mt: -4,
       }}
     >
-      {/* Left section: icon + chart placeholder */}
-      <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-        <Box
-          sx={{
-            backgroundColor: color || "#4e73df",
-            color: "#fff",
-            p: 1.3,
-            borderRadius: 2,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            minWidth: 40,
-            minHeight: 40,
-          }}
-        >
-          {icon}
-        </Box>
-
-        {/* Placeholder for chart */}
-        <Box
-          sx={{
-            width: 40,
-            height: 30,
-            bgcolor: "#f2f2f2",
-            borderRadius: 1,
-          }}
-        />
+      {/* Left section: Mini Chart */}
+      <Box sx={{ width: 70, height: 50 }}>
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart data={chartData}>
+            <Line
+              type="monotone"
+              dataKey="value"
+              stroke={color}
+              strokeWidth={2}
+              dot={false}
+            />
+          </LineChart>
+        </ResponsiveContainer>
       </Box>
 
-      {/* Right section: number + title */}
+      {/* Right section: Title then Value */}
       <Box textAlign="right">
-        <Typography variant="h5" fontWeight="bold">
-          {value}
-        </Typography>
         <Typography variant="subtitle2" color="gray">
           {title}
+        </Typography>
+        <Typography variant="h5" fontWeight="bold">
+          {value}
         </Typography>
       </Box>
     </Box>
