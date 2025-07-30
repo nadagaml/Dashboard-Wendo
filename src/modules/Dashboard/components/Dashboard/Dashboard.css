@@ -1,0 +1,162 @@
+.dashboard-card-header {
+  margin-bottom: 16px;
+}
+
+.left-header {
+  display: flex;
+  align-items: center;
+  gap: 40px; 
+}
+
+.revenue-info {
+  margin-right: 24px; 
+   margin-left: 10px;
+}
+
+.revenue-info small {
+  display: block;
+  color: #6c757d;
+  margin-bottom: 6px;
+ 
+}
+
+.revenue-info h5 {
+  margin: 0;
+}
+
+.dashboard-legend {
+  display: flex;
+  align-items: center;
+  gap: 20px; 
+}
+
+.dashboard-legend span {
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem; 
+  color: #6c757d;
+}
+
+.dashboard-legend span::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px; 
+}
+
+.dashboard-legend .income::before {
+  background-color: #6768A7;
+}
+
+.dashboard-legend .operations::before {
+  background-color: #85F4FA;
+}
+
+
+/* بطاقة الفيزا */
+.visa-card {
+  background: linear-gradient(135deg, #6768A7, #85F4FA);
+  color: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  height: 220px;
+}
+
+.visa-card .top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.visa-card .bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.visa-card small {
+  opacity: 0.9;
+}
+
+.balance-section {
+  text-align: center;
+}
+
+.balance-section h6 {
+  font-weight: 700;
+  font-size: 20px;
+  margin: 0;
+}
+
+.balance-section small {
+  color: #888;
+}
+
+/* Dashboard.css */
+
+.dashboard-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  padding: 16px;
+  background: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+
+/* الدوائر */
+.circle-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 0 auto 5px;
+}
+
+.circle-outline {
+  width: 12px;
+  height: 12px;
+  border: 2px solid #6768A7;
+  border-radius: 50%;
+}
+
+/* جدول الرحلات */
+.table {
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+.table thead th {
+  background: transparent;
+  font-weight: 600;
+  font-size: 13px;
+  color: #888;
+  border-bottom: none;
+}
+
+.table tbody tr {
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.table tbody td {
+  vertical-align: middle;
+  font-size: 13px;
+  padding: 12px;
+}
+
+.table tbody tr td:first-child {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.table tbody tr td:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.table .badge {
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
