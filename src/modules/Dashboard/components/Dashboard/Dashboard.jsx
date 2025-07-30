@@ -81,23 +81,23 @@ export default function Dashboard() {
   ];
 
     const dataPointsIncome = [
-    { label: "Jan", y: 99 },
+    { label: "Jan", y: 50 },
     { label: "Feb", y: 90 },
-    { label: "Mar", y: 99 },
-    { label: "Apr", y: 90 },
-    { label: "Jun", y: 99 },
-    { label: "Jul", y: 90 },
+    { label: "Mar", y: 50 },
+    { label: "Apr", y: 25 },
+    { label: "Jun", y: 50 },
+    { label: "Jul", y: 25},
     { label: "Aug", y: 99 },
   ];
 
   const dataPointsOperations = [
     { label: "Jan", y: 81 },
     { label: "Feb", y: 72 },
-    { label: "Mar", y: 90 },
-    { label: "Apr", y: 72 },
+    { label: "Mar", y: 75 },
+    { label: "Apr", y: 50 },
     { label: "Jun", y: 81 },
-    { label: "Jul", y: 72 },
-    { label: "Aug", y: 81 },
+    { label: "Jul", y: 0 },
+    { label: "Aug", y: 25 },
   ];
 
   const options = {
@@ -151,77 +151,79 @@ export default function Dashboard() {
         {/* Main Row */}
         <Row className="mb-4">
           {/* Left: Chart */}
-          <Col md={8}>
-            <Card className="dashboard-card">
 
-                <div className="dashboard-card-header d-flex justify-content-between align-items-center mb-2">
-                  <div className="left-header">
-                    <div className="revenue-info mb-5">
-                      <h5 className="fw-bold mb-2">$855.8K</h5>
-                      <small className="text-muted">Total Revenue</small>
-                      
-                    </div>
-                    <div className="dashboard-legend mb-5">
-                      <span className="income">Total income</span>
-                      <span className="operations">Operations</span>
-                    </div>
-                  </div>
-                  <Dropdown onSelect={handleSelect} className="mb-5">
-                    <Dropdown.Toggle size="sm" variant="outline-secondary">
-                      {timeRange}
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                      <Dropdown.Item eventKey="This Week">This Week</Dropdown.Item>
-                      <Dropdown.Item eventKey="This Month">This Month</Dropdown.Item>
-                      <Dropdown.Item eventKey="This Year">This Year</Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </div>
+                <Col md={8}>
+                      <Card className="dashboard-card">
+                        <div className="dashboard-card-header mb-3">
+                            <div className="left-header">
+                              <div className="revenue-info">
+                                <h5 className="fw-bold mb-0">$855.8K</h5>
+                                <small className="text-muted">Total Revenue</small>
+                              </div>
+                              <div className="dashboard-legend ms-5">
+                                <span className="income">Total income</span>
+                                <span className="operations">Operations</span>
+                              </div>
+                            </div>
 
+                          <Dropdown onSelect={handleSelect}>
+                            <Dropdown.Toggle size="sm" variant="outline-secondary">
+                              {timeRange}
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                              <Dropdown.Item eventKey="This Week">This Week</Dropdown.Item>
+                              <Dropdown.Item eventKey="This Month">This Month</Dropdown.Item>
+                              <Dropdown.Item eventKey="This Year">This Year</Dropdown.Item>
+                            </Dropdown.Menu>
+                          </Dropdown>
+                        </div>
 
-              {/* Chart */}
-              <div style={{ width: "100%", height: 200 }}>
-                <ResponsiveContainer>
-                  <AreaChart data={data}>
-                    <defs>
-                      <linearGradient id="incomeGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#6768A7" stopOpacity={0.4} />
-                        <stop offset="100%" stopColor="#6768A7" stopOpacity={0} />
-                      </linearGradient>
-                      <linearGradient id="operationsGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#85F4FA" stopOpacity={0.4} />
-                        <stop offset="100%" stopColor="#85F4FA" stopOpacity={0} />
-                      </linearGradient>
-                    </defs>
+                        {/* Chart */}
+                        <div style={{ width: "100%", height: 250 }}>
+                          <ResponsiveContainer>
+                            <AreaChart data={data}>
+                              <defs>
+                                {/* Gradient لـ income */}
+                                <linearGradient id="incomeGradient" x1="0" y1="0" x2="0" y2="1">
+                                  <stop offset="0%" stopColor="#6768A7" stopOpacity={0.2} />
+                                  <stop offset="100%" stopColor="#6768A7" stopOpacity={0} />
+                                </linearGradient>
 
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                    <XAxis dataKey="name" fontSize={10} />
-                    <YAxis fontSize={10} />
-                    <Tooltip />
+                                {/* Gradient لـ operations */}
+                                <linearGradient id="operationsGradient" x1="0" y1="0" x2="0" y2="1">
+                                  <stop offset="0%" stopColor="#85F4FA" stopOpacity={0.2} />
+                                  <stop offset="100%" stopColor="#85F4FA" stopOpacity={0} />
+                                </linearGradient>
+                              </defs>
 
-                    <Area
-                      type="monotone"
-                      dataKey="income"
-                      stroke="#6768A7"
-                      fill="url(#incomeGradient)"
-                      strokeWidth={2}
-                      dot={false}
-                    />
-                    <Area
-                      type="monotone"
-                      dataKey="operations"
-                      stroke="#85F4FA"
-                      fill="url(#operationsGradient)"
-                      strokeWidth={2}
-                      dot={false}
-                    />
-                  </AreaChart>
-                </ResponsiveContainer>
-              </div>
-            </Card>
-          </Col>
+                              <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                              <XAxis dataKey="name" fontSize={11} />
+                              <YAxis fontSize={11} />
+                              <Tooltip />
 
+                            <Area
+                              type="monotone"
+                              dataKey="income"
+                              stroke="#6768A7"
+                              fill="url(#incomeGradient)"
+                              strokeWidth={2}
+                              dot={false}
+                            />
 
+                            <Area
+                              type="monotone"
+                              dataKey="operations"
+                              stroke="#85F4FA"
+                              fill="url(#operationsGradient)"
+                              strokeWidth={2}
+                              dot={false}
+                            />
+
+                            </AreaChart>
+                          </ResponsiveContainer>
+                        </div>
+                      </Card>
+                </Col>
           
 
           {/* Right: Visa Card */}
@@ -308,24 +310,44 @@ export default function Dashboard() {
 </Col>
 
 
-          <Col md={4}>
-            <Card className="dashboard-card">
-              <div className="d-flex justify-content-between mb-2">
-                <small className="text-muted">Refund & Cancellation Losses</small>
-                <Dropdown onSelect={handleSelect}>
-                  <Dropdown.Toggle size="sm" variant="outline-secondary">{timeRange}</Dropdown.Toggle>
-                </Dropdown>
-              </div>
-              <ResponsiveContainer width="100%" height={210}>
-                <BarChart data={barData}>
-                  <XAxis dataKey="name" fontSize={10} />
-                  <YAxis fontSize={10} />
-                  <Tooltip />
-                  <Bar dataKey="value" fill="#6768A7" radius={[4, 4, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
-            </Card>
-          </Col>
+<Col md={4} lg={4}> 
+      <Card className="dashboard-card">
+        <div className="d-flex justify-content-between mb-2">
+          <small className="text-muted">Refund & Cancellation Losses</small>
+          <Dropdown onSelect={handleSelect}>
+            <Dropdown.Toggle size="sm" variant="outline-secondary">{timeRange}</Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item eventKey="Last 7 Days">Last 7 Days</Dropdown.Item>
+              <Dropdown.Item eventKey="Last 30 Days">Last 30 Days</Dropdown.Item>
+              <Dropdown.Item eventKey="This Month">This Month</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
+        <ResponsiveContainer width="100%" height={220}>
+          <BarChart data={barData}>
+            <defs>
+              <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#c9c9e1" stopOpacity={1} />
+                <stop offset="100%" stopColor="#6768A7" stopOpacity={1} />
+              </linearGradient>
+            </defs>
+            <XAxis dataKey="name" fontSize={10} />
+            <YAxis fontSize={10} />
+            <Tooltip />
+            
+            {/* First Bar: Light color */}
+            <Bar dataKey="value" fill="#c9c9e1" radius={[4, 4, 0, 0]} barSize={30} />
+            
+            {/* Second Bar: Dark color (representing actual data part) */}
+            <Bar dataKey="value" fill="#6768A7" radius={[4, 4, 0, 0]} barSize={30} background={{ fill: '#c9c9e1' }} />
+          </BarChart>
+        </ResponsiveContainer>
+      </Card>
+    </Col>
+
+
+
+          
 
           <Col md={4}>
             <Card className="dashboard-card text-center">
