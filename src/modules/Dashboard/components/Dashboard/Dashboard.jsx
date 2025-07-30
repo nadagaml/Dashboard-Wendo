@@ -151,75 +151,75 @@ export default function Dashboard() {
         {/* Main Row */}
         <Row className="mb-4">
           {/* Left: Chart */}
-<Col md={8}>
-  <Card className="dashboard-card">
+          <Col md={8}>
+            <Card className="dashboard-card">
 
-      <div className="dashboard-card-header d-flex justify-content-between align-items-center mb-2">
-        <div className="left-header">
-          <div className="revenue-info mb-5">
-            <h5 className="fw-bold mb-2">$855.8K</h5>
-            <small className="text-muted">Total Revenue</small>
-            
-          </div>
-          <div className="dashboard-legend mb-5">
-            <span className="income">Total income</span>
-            <span className="operations">Operations</span>
-          </div>
-        </div>
-        <Dropdown onSelect={handleSelect} className="mb-5">
-          <Dropdown.Toggle size="sm" variant="outline-secondary">
-            {timeRange}
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            <Dropdown.Item eventKey="This Week">This Week</Dropdown.Item>
-            <Dropdown.Item eventKey="This Month">This Month</Dropdown.Item>
-            <Dropdown.Item eventKey="This Year">This Year</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-      </div>
+                <div className="dashboard-card-header d-flex justify-content-between align-items-center mb-2">
+                  <div className="left-header">
+                    <div className="revenue-info mb-5">
+                      <h5 className="fw-bold mb-2">$855.8K</h5>
+                      <small className="text-muted">Total Revenue</small>
+                      
+                    </div>
+                    <div className="dashboard-legend mb-5">
+                      <span className="income">Total income</span>
+                      <span className="operations">Operations</span>
+                    </div>
+                  </div>
+                  <Dropdown onSelect={handleSelect} className="mb-5">
+                    <Dropdown.Toggle size="sm" variant="outline-secondary">
+                      {timeRange}
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item eventKey="This Week">This Week</Dropdown.Item>
+                      <Dropdown.Item eventKey="This Month">This Month</Dropdown.Item>
+                      <Dropdown.Item eventKey="This Year">This Year</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
 
 
-    {/* Chart */}
-    <div style={{ width: "100%", height: 200 }}>
-      <ResponsiveContainer>
-        <AreaChart data={data}>
-          <defs>
-            <linearGradient id="incomeGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#6768A7" stopOpacity={0.4} />
-              <stop offset="100%" stopColor="#6768A7" stopOpacity={0} />
-            </linearGradient>
-            <linearGradient id="operationsGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#85F4FA" stopOpacity={0.4} />
-              <stop offset="100%" stopColor="#85F4FA" stopOpacity={0} />
-            </linearGradient>
-          </defs>
+              {/* Chart */}
+              <div style={{ width: "100%", height: 200 }}>
+                <ResponsiveContainer>
+                  <AreaChart data={data}>
+                    <defs>
+                      <linearGradient id="incomeGradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#6768A7" stopOpacity={0.4} />
+                        <stop offset="100%" stopColor="#6768A7" stopOpacity={0} />
+                      </linearGradient>
+                      <linearGradient id="operationsGradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#85F4FA" stopOpacity={0.4} />
+                        <stop offset="100%" stopColor="#85F4FA" stopOpacity={0} />
+                      </linearGradient>
+                    </defs>
 
-          <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          <XAxis dataKey="name" fontSize={10} />
-          <YAxis fontSize={10} />
-          <Tooltip />
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                    <XAxis dataKey="name" fontSize={10} />
+                    <YAxis fontSize={10} />
+                    <Tooltip />
 
-          <Area
-            type="monotone"
-            dataKey="income"
-            stroke="#6768A7"
-            fill="url(#incomeGradient)"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Area
-            type="monotone"
-            dataKey="operations"
-            stroke="#85F4FA"
-            fill="url(#operationsGradient)"
-            strokeWidth={2}
-            dot={false}
-          />
-        </AreaChart>
-      </ResponsiveContainer>
-    </div>
-  </Card>
-</Col>
+                    <Area
+                      type="monotone"
+                      dataKey="income"
+                      stroke="#6768A7"
+                      fill="url(#incomeGradient)"
+                      strokeWidth={2}
+                      dot={false}
+                    />
+                    <Area
+                      type="monotone"
+                      dataKey="operations"
+                      stroke="#85F4FA"
+                      fill="url(#operationsGradient)"
+                      strokeWidth={2}
+                      dot={false}
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </div>
+            </Card>
+          </Col>
 
 
           
