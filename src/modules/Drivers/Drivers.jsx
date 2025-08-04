@@ -28,11 +28,10 @@ export default function Drivers() {
     
       <ReusableTable
         columns={columns}
-        rows={rows}
-        onView={(id) => console.log("View", id)}
-        onEdit={(id) => console.log("Edit", id)}
+        rows={rows}  
         onDelete={(id) => console.log("Delete", id)}
         loading={false}
+        
       />
 
 

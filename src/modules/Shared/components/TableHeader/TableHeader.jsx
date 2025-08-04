@@ -1,24 +1,28 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaFilter } from "react-icons/fa";
 
-const TableHeader = ({ title, search, setSearch, onAddNew }) => {
+
+const TableHeader = ({ title, search, setSearch, onAddNew, onFilter }) => {
   return (
-    <div className="d-flex justify-content-between align-items-center mb-3">
-      <h5 className="m-0">{title}</h5>
-      <div className="d-flex align-items-center gap-2">
+    <div className="table-header mb-3">
+      <h5 className="mb-2 fw-semibold">{title}</h5>
+      <div className="d-flex justify-content-between align-items-center">
         <Form.Control
           type="text"
-          placeholder="Search..."
+          placeholder="Search"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          style={{ width: "200px" }}
+          style={{ maxWidth: "220px" }}
         />
-        {onAddNew && (
-          <Button variant="primary" onClick={onAddNew}>
-            <FaPlus className="me-2" /> Add New
+        <div className="d-flex align-items-center gap-2">
+          <Button  className="custom-btn" onClick={onAddNew}>
+            <FaPlus className="me-2" /> Add Driver
           </Button>
-        )}
+          <Button  className="filter-btn" variant="outline-secondary" onClick={onFilter}>
+            <FaFilter className="me-2" /> Filter
+          </Button>
+        </div>
       </div>
     </div>
   );

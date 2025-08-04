@@ -132,7 +132,7 @@ export default function Dashboard() {
 
   return (
     <>
-      <Header title="Dashboard Overview" />
+      <Header title="" />
       <Container fluid className="px-4">
         {/* Stats */}
         <Row style={{ marginTop: "-15px" }}>

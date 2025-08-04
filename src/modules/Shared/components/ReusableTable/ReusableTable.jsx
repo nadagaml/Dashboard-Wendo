@@ -1,54 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { Table, Spinner, Form } from "react-bootstrap";
+import { Table, Form } from "react-bootstrap";
 import { FaTrash } from "react-icons/fa";
 import TableHeader from "../TableHeader/TableHeader";
 
-const Loader = () => (
-  <div className="text-center py-4">
-    <Spinner animation="border" variant="primary" />
-  </div>
-);
-
-const NoData = () => (
-  <div className="text-center py-4">
-    <p>No Data Available</p>
-  </div>
-);
 
 const ReusableTable = ({
-  title = "Data Table",
+  title = "All Drivers",
   columns,
   rows,
   onDelete,
   onAddNew,
   idKey = "id",
   loading = false,
+  pagination,
 }) => {
-  const [isMobileView, setIsMobileView] = useState(window.innerWidth < 768);
   const [search, setSearch] = useState("");
   const [selectedRows, setSelectedRows] = useState([]);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobileView(window.innerWidth < 768);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const filteredRows = rows.filter((row) =>
     Object.values(row).some((val) =>
       String(val).toLowerCase().includes(search.toLowerCase())
     )
   );
-
-  const getInitials = (name) => {
-    if (!name) return "NA";
-    const parts = name.split(" ");
-    if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
-    return (parts[0][0] + parts[1][0]).toUpperCase();
-  };
-
-  
-  const getAvatarColor = () => "#156082";
 
   const handleSelectAll = (e) => {
     if (e.target.checked) {
@@ -64,26 +37,34 @@ const ReusableTable = ({
     );
   };
 
-  const getStatusClass = (status) => {
-    switch (status.toLowerCase()) {
-      case "active":
-        return "badge bg-success";
-      case "offline":
-        return "badge bg-secondary";
-      case "inactive":
-        return "badge bg-warning ";
-      default:
-        return "badge bg-light text-dark";
-    }
+  const getInitials = (name) => {
+    if (!name) return "NA";
+    const parts = name.split(" ");
+    if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+    return (parts[0][0] + parts[1][0]).toUpperCase();
+  };
+
+  const getAvatarColor = () => "#156082";
+
+  const getStatusBadge = (status) => {
+    const s = status.toLowerCase();
+  if (s === "active")
+    return <span className="badge-custom badge-active">● Active</span>;
+
+  if (s === "offline")
+    return <span className="badge-custom badge-offline">● Offline</span>;
+
+  if (s === "inactive" || s === "wait" || s === "waiting")
+    return <span className="badge-custom badge-wait">● Wait</span>;
+    return <span className="badge bg-light text-dark">{status}</span>;
   };
 
   return (
-    <div className="p-3 mb-4 rounded shadow-sm" style={{ background: "#f8f9fa" }}>
+    <div className="custom-card">
       <TableHeader title={title} search={search} setSearch={setSearch} onAddNew={onAddNew} />
-
       <div className="table-responsive">
-        <Table striped bordered hover responsive className="align-middle custom-table">
-          <thead className="table-dark">
+        <Table hover className="mb-2 custom-table">
+          <thead>
             <tr>
               <th>
                 <Form.Check
@@ -93,87 +74,61 @@ const ReusableTable = ({
                 />
               </th>
               {columns.map((col) => (
-                <th key={col.id} className="custom-header">
-                  {col.label}
-                </th>
+                <th key={col.id}>{col.label}</th>
               ))}
-               
+              <th></th> {/* للحذف */}
             </tr>
           </thead>
           <tbody>
-            {loading ? (
-              <tr>
-                <td colSpan={columns.length + 2}>
-                  <Loader />
+            {filteredRows.map((row) => (
+              <tr key={row[idKey]}>
+                <td>
+                  <Form.Check
+                    type="checkbox"
+                    checked={selectedRows.includes(row[idKey])}
+                    onChange={() => handleSelectRow(row[idKey])}
+                  />
                 </td>
-              </tr>
-            ) : filteredRows.length === 0 ? (
-              <tr>
-                <td colSpan={columns.length + 2}>
-                  <NoData />
-                </td>
-              </tr>
-            ) : (
-              filteredRows.map((row) => (
-                <tr key={row[idKey]}>
-                  {/* Checkbox */}
-                  <td>
-                    <Form.Check
-                      type="checkbox"
-                      checked={selectedRows.includes(row[idKey])}
-                      onChange={() => handleSelectRow(row[idKey])}
-                    />
-                  </td>
-
-                  {columns.map((col) => (
-                    <td key={col.id}>
-                      {col.id === "name" ? (
-                        <div className="d-flex align-items-center gap-2">
-                          
-                          {row.image ? (
-                            <img
-                              src={row.image}
-                              alt="driver"
-                              className="rounded-circle"
-                              width="40"
-                              height="40"
-                            />
-                          ) : (
-                         
-                            <div
-                              className="avatar-initials"
-                              style={{
-                                backgroundColor: getAvatarColor(),
-                              }}
-                            >
-                              {getInitials(row[col.id])}
-                            </div>
-                          )}
-                         
-                          <span>{row[col.id]}</span>
-                        </div>
-                      ) : col.id === "status" ? (
-                        <span className={getStatusClass(row[col.id])}>{row[col.id]}</span>
-                      ) : (
-                        row[col.id]
-                      )}
-                    </td>
-                  ))}
-
-                  <td className="text-center">
-                    {onDelete && (
-                      <FaTrash
-                        style={{ cursor: "pointer", color: "#3b3b3bff" }}
-                        onClick={() => onDelete(row[idKey])}
-                      />
+                {columns.map((col) => (
+                  <td key={col.id}>
+                    {col.id === "name" ? (
+                      <div className="d-flex align-items-center gap-2">
+                        {row.image ? (
+                          <img
+                            src={row.image}
+                            alt=""
+                            className="rounded-circle"
+                            width="32"
+                            height="32"
+                          />
+                        ) : (
+                          <div className="avatar-initials" style={{ backgroundColor: getAvatarColor() }}>
+                            {getInitials(row[col.id])}
+                          </div>
+                        )}
+                        {row[col.id]}
+                      </div>
+                    ) : col.id === "status" ? (
+                      getStatusBadge(row[col.id])
+                    ) : (
+                      row[col.id]
                     )}
                   </td>
-                </tr>
-              ))
-            )}
+                ))}
+                <td>
+                  {onDelete && (
+                    <FaTrash
+                      style={{ cursor: "pointer", color: "#6b7280" }}
+                      onClick={() => onDelete(row[idKey])}
+                    />
+                  )}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </Table>
       </div>
+      {pagination && <div className="mt-3">{pagination}</div>}
     </div>
   );
 };

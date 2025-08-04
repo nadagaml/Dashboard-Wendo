@@ -11,28 +11,26 @@ import { MOBILE_VALIDATION, PASSWORD_VALIDTION } from '../../../Services/Validat
 import Cookies from 'js-cookie'; 
 
 export default function Login() {
-
   const navigate = useNavigate();
-  const { saveLoginData } = useContext(AuthContext);
+  const { loadLoginDataFromCookie } = useContext(AuthContext); // ✅ التعديل هنا
   const [loading, setLoading] = useState(false);
 
   const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
   const onSubmit = async (data) => {
-
     try {
       setLoading(true);
       const response = await axiosInstance.post(USERS_URLS.LOGIN, data);
       toast.success('Login successful!');
 
+      // ✅ حفظ التوكن في الكوكيز لمدة ساعة
       Cookies.set('token', response.data.token, { expires: 1 / 24 });
 
-     
-      saveLoginData();
+      // ✅ تحديث بيانات المستخدم بعد حفظ التوكن
+      loadLoginDataFromCookie();
 
       reset();
       navigate('/dashboard'); 
-
     } catch (err) {
       console.log('Login error:', err);
 
@@ -82,7 +80,7 @@ export default function Login() {
                   className="form-control"
                   id="password"
                   placeholder="********"
-                  {...register('password', )} 
+                  {...register('password',)} 
                 />
               </div>
               {errors.password && (
