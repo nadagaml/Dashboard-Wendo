@@ -21,6 +21,7 @@ import {
   AreaChart, Area,
 } from "recharts";
 import "./Dashboard.css";
+import VisaCard from "../VisaCard";
 
 export default function Dashboard() {
   const stats = [
@@ -227,8 +228,10 @@ export default function Dashboard() {
           
 
           {/* Right: Visa Card */}
+
+        
           <Col md={4}>
-            <Card className="dashboard-card d-flex flex-column justify-content-between">
+            {/* <Card className="dashboard-card d-flex flex-column justify-content-between">
               <div className="visa-card">
                 <div className="top">
                   <div>
@@ -254,7 +257,9 @@ export default function Dashboard() {
                 <h6>$4,050,12,300</h6>
                 <small>balance</small>
               </div>
-            </Card>
+            </Card> */}
+
+              <VisaCard/>
           </Col>
         </Row>
 
