@@ -1,34 +1,34 @@
-export default function LostItems() {
-  const items = [
-    { name: "Passenger Name", status: "Retrieved" },
-    { name: "Passenger Name", status: "On Way" },
-    { name: "Passenger Name", status: "Lost" },
-  ];
+import { Card } from "react-bootstrap";
 
+export default function LostItems() {
+   const lostItems = [
+    { name: "Passenger Name", status: "Retrieved" },
+    { name: "Passenger Name", status: "Retrieved" },
+    { name: "Passenger Name", status: "on way" },
+    { name: "Passenger Name", status: "Lost" },
+    { name: "Passenger Name", status: "Retrieved" },
+  ];
   return (
-    <div className="bg-white p-6 rounded-2xl shadow">
-      <h3 className="text-lg font-semibold mb-4">Lost Items</h3>
-      <ul>
-        {items.map((item, index) => (
-          <li
-            key={index}
-            className="flex justify-between items-center py-3 border-b last:border-b-0 text-sm"
-          >
-            <span>{item.name}</span>
-            <span
-              className={`${
-                item.status === "Retrieved"
-                  ? "text-green-500"
-                  : item.status === "On Way"
-                  ? "text-yellow-500"
-                  : "text-red-500"
-              } font-semibold`}
-            >
-              {item.status}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+     <Card className="dashboard-card">
+              <small className="text-muted mb-2">Lost Item</small>
+              <div className="text-success mb-2" style={{ fontSize: "0.75rem" }}>
+                ↑ 8 retrieved this month
+              </div>
+              <ul className="list-unstyled mb-0">
+                {lostItems.map((item, idx) => (
+                  <li key={idx} className="mb-2 d-flex align-items-center gap-2">
+                    <div className="circle-outline"></div>
+                    <div>
+                      <div className="fw-bold">{item.name}</div>
+                      <small className="text-muted">{item.status}</small>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </Card>
+    
+    </>
+ 
   );
 }
