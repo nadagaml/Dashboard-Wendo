@@ -23,59 +23,6 @@ export default function Dashboard() {
   ];
 
 
-
-
-
-  //   const dataPointsIncome = [
-  //   { label: "Jan", y: 50 },
-  //   { label: "Feb", y: 90 },
-  //   { label: "Mar", y: 50 },
-  //   { label: "Apr", y: 25 },
-  //   { label: "Jun", y: 50 },
-  //   { label: "Jul", y: 25},
-  //   { label: "Aug", y: 99 },
-  // ];
-
-  // const dataPointsOperations = [
-  //   { label: "Jan", y: 81 },
-  //   { label: "Feb", y: 72 },
-  //   { label: "Mar", y: 75 },
-  //   { label: "Apr", y: 50 },
-  //   { label: "Jun", y: 81 },
-  //   { label: "Jul", y: 0 },
-  //   { label: "Aug", y: 25 },
-  // ];
-
-  // const options = {
-  //   animationEnabled: true,
-  //   height: 200,
-  //   backgroundColor: "#ffffff",
-  //   axisX: {
-  //     labelFontSize: 10,
-  //     lineThickness: 0
-  //   },
-  //   axisY: {
-  //     labelFontSize: 10,
-  //     gridThickness: 0
-  //   },
-  //   data: [
-  //     {
-  //       type: "spline",
-  //       name: "Total income",
-  //       showInLegend: true,
-  //       color: "#6768A7",
-  //       dataPoints: dataPointsIncome
-  //     },
-  //     {
-  //       type: "spline",
-  //       name: "Operations",
-  //       showInLegend: true,
-  //       color: "#85F4FA",
-  //       dataPoints: dataPointsOperations
-  //     }
-  //   ]
-  // };
-
   return (
     <>
       <Header title="" />

@@ -22,8 +22,8 @@ export default function RevenueChart() {
 
  const [timeRange, setTimeRange] = useState("This Week");
    const data = [
-    { name: "Jan", income: 75, operations: 48 },
-    { name: "Feb", income: 90, operations: 28 },
+    { name: "Jan", income: 50, operations: 50 },
+    { name: "Feb", income: 50, operations: 50 },
     { name: "Mar", income: 99, operations: 90 },
     { name: "Apr", income: 50, operations: 20 },
     { name: "Jun", income: 99, operations: 81 },
